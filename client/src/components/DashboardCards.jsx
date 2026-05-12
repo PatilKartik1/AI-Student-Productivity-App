@@ -19,7 +19,7 @@ function DashboardCards() {
       {cards.map((card, index) => (
         <div
           key={index}
-          className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6"
+          className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-blue-500 hover:-translate-y-1 transition duration-300 shadow-lg"
         >
           <h3 className="text-zinc-400 text-lg">{card.title}</h3>
 
