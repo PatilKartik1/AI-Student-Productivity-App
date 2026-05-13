@@ -1,5 +1,6 @@
 import Sidebar from "../components/Sidebar";
 import DashboardCards from "../components/DashboardCards";
+import Tasks from "../components/Tasks";
 
 function Dashboard() {
   return (
@@ -11,6 +12,7 @@ function Dashboard() {
 
         <p className="text-zinc-400 mt-4">Welcome back, Kartik 👋</p>
         <DashboardCards />
+        <Tasks />
       </main>
     </div>
   );
