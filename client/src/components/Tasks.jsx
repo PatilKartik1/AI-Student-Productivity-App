@@ -7,7 +7,13 @@ function Tasks() {
   function addTask() {
     if (task.trim() === "") return;
 
-    setTasks([...tasks, task]);
+    setTasks([
+      ...tasks,
+      {
+        text: task,
+        completed: false,
+      },
+    ]);
     setTask("");
   }
 
@@ -46,7 +52,7 @@ function Tasks() {
             key={index}
             className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex items-center justify-between"
           >
-            <p>{t}</p>
+            <p>{t.text}</p>
 
             <button
               onClick={() => deleteTask(index)}
