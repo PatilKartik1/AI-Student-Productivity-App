@@ -25,6 +25,21 @@ function Tasks() {
     setTasks(updatedTasks);
   }
 
+  function toggleTask(indexToToggle) {
+    const updatedTasks = tasks.map((task, index) => {
+      if (index === indexToToggle) {
+        return {
+          ...task,
+          completed: !task.completed,
+        };
+      }
+
+      return task;
+    });
+
+    setTasks(updatedTasks);
+  }
+
   return (
     <div className="mt-12">
       <h2 className="text-3xl font-bold mb-6">Tasks</h2>
@@ -52,7 +67,14 @@ function Tasks() {
             key={index}
             className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex items-center justify-between"
           >
-            <p>{t.text}</p>
+            <p
+              onClick={() => toggleTask(index)}
+              className={`cursor-pointer ${
+                t.completed ? "line-through text-zinc-500" : "text-white"
+              }`}
+            >
+              {t.text}
+            </p>
 
             <button
               onClick={() => deleteTask(index)}
