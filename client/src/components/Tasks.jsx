@@ -11,6 +11,14 @@ function Tasks() {
     setTask("");
   }
 
+  function deleteTask(indexToDelete) {
+    const updatedTasks = tasks.filter((_, index) => {
+      return index !== indexToDelete;
+    });
+
+    setTasks(updatedTasks);
+  }
+
   return (
     <div className="mt-12">
       <h2 className="text-3xl font-bold mb-6">Tasks</h2>
@@ -36,9 +44,16 @@ function Tasks() {
         {tasks.map((t, index) => (
           <div
             key={index}
-            className="bg-zinc-900 border border-zinc-800 rounded-xl p-4"
+            className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex items-center justify-between"
           >
-            {t}
+            <p>{t}</p>
+
+            <button
+              onClick={() => deleteTask(index)}
+              className="text-red-500 hover:text-red-400 transition"
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>
