@@ -49,6 +49,11 @@ function Tasks({ tasks, setTasks }) {
           placeholder="Enter a task..."
           value={task}
           onChange={(e) => setTask(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              addTask();
+            }
+          }}
           className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 flex-1 outline-none"
         />
 
@@ -61,6 +66,11 @@ function Tasks({ tasks, setTasks }) {
       </div>
 
       <div className="mt-8 space-y-4">
+        {tasks.length === 0 && (
+          <div className="bg-zinc-900 border border-dashed border-zinc-700 rounded-2xl p-10 text-center text-zinc-500">
+            No tasks yet. Add your first task 🚀
+          </div>
+        )}
         {tasks.map((t, index) => (
           <div
             key={index}
