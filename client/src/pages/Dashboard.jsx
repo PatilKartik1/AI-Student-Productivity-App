@@ -1,9 +1,20 @@
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import DashboardCards from "../components/DashboardCards";
 import Tasks from "../components/Tasks";
-import { useState } from "react";
+import TaskStats from "../components/TaskStats";
 
 function Dashboard() {
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
   return (
     <div className="flex bg-black text-white">
       <Sidebar />
@@ -13,7 +24,9 @@ function Dashboard() {
 
         <p className="text-zinc-400 mt-4">Welcome back, Kartik 👋</p>
         <DashboardCards />
-        <Tasks />
+        <TaskStats tasks={tasks} />
+
+        <Tasks tasks={tasks} setTasks={setTasks} />
       </main>
     </div>
   );

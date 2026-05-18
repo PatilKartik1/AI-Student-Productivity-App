@@ -1,12 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-function Tasks() {
+function Tasks({ tasks, setTasks }) {
   const [task, setTask] = useState("");
-  const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem("tasks");
-
-    return savedTasks ? JSON.parse(savedTasks) : [];
-  });
 
   function addTask() {
     if (task.trim() === "") return;
@@ -43,10 +38,6 @@ function Tasks() {
 
     setTasks(updatedTasks);
   }
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
 
   return (
     <div className="mt-12">
